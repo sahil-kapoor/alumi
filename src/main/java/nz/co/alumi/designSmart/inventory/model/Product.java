@@ -28,4 +28,12 @@ public class Product {
   public String openSideDescription;
   public int qty;
 
+  public void setName(final String name) {
+    this.name = name+"sahil";
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
 }

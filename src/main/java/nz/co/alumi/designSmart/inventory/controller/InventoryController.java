@@ -19,7 +19,7 @@ public class InventoryController {
   @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Product> createProduct(@RequestParam (required = true, name = "type") Constants.Type type,
                                                @RequestBody Product product) {
-    return ResponseEntity.ok(inventoryService).build();
+    return ResponseEntity.ok(inventoryService.create(product));
   }
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
