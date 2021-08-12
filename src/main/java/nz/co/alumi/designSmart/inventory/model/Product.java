@@ -1,6 +1,7 @@
 package nz.co.alumi.designSmart.inventory.model;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,27 +14,22 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Data
 @Document(collection = "product")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Product {
 
   @Id
   public String id;
-  public Constants.Type type;
-  public String sizeW;
-  public String sizeH;
+  public Constants.ProductType type;
+  public Integer sizeW;
+  public Integer sizeH;
   public String name;
+  public String key;
   public String sku;
   public String colorKey;
   public String colorName;
   public String openSideKey;
   public String openSideDescription;
   public int qty;
-
-  public void setName(final String name) {
-    this.name = name+"sahil";
-  }
-
-  public String getName() {
-    return this.name;
-  }
+  public Integer priority;
 
 }
