@@ -26,7 +26,10 @@ public class InventoryController {
   public ResponseEntity<List<Product>> searchProduct(@RequestParam (name = "sizeW") Integer sizeW,
                                                      @RequestParam (name = "sizeH") Integer sizeH,
                                                      @RequestParam (name = "sku") String sku,
-                                                     @RequestParam (name = "inStock", defaultValue = "true") Boolean inStock ) {
-    return ResponseEntity.ok(windowService.searchProductInStock(sizeW,sizeH,sku));
+                                                     @RequestParam (name = "inStock", defaultValue = "true") Boolean inStock,
+                                                     @RequestParam (name = "inStock", defaultValue = "true") Boolean suggestion,
+                                                     @RequestParam (name = "marginWidth", defaultValue = "20") Integer marginWidth,
+                                                     @RequestParam (name = "marginHeight", defaultValue = "20") Integer marginHeight) {
+    return ResponseEntity.ok(windowService.searchProductInStock(sizeW,sizeH,sku,inStock));
   }
 }

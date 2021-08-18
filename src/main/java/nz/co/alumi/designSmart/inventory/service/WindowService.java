@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class WindowService {
@@ -45,14 +47,39 @@ public class WindowService {
     return null;
   }*/
 
-
-  public List<Product> searchProductInStock(Integer width, Integer height,String sku){
+//TODO: manage margin and rank accordingly.
+  public List<Product> searchProductInStock(Integer width, Integer height,String sku,boolean inStock){
     List<Product> products=new ArrayList<>();
-    List<Product> dbProducts=inventoryRepository.findByType(Constants.ProductType.WINDOW);
-    if(CollectionUtils.isNotEmpty(dbProducts)){
-
+    if(!StringUtils.isEmpty(sku)){
+      Product dbProduct=inventoryRepository.findBySku(sku);
+      if(dbProduct!=null){
+        products.add(dbProduct);
+      }
+    }else{
+      List<Product> dbProducts=inventoryRepository.findByType(Constants.ProductType.WINDOW);
+      if(CollectionUtils.isNotEmpty(dbProducts)){
+        if(null!=width && null!=height){
+            List<Product> filterProduct=dbProducts.stream().filter(dbProduct->productHelper.partialMatchWithWidthHeight(width,height,dbProduct)).collect(Collectors.toList());
+            products.addAll(filterProduct);
+        }
+        if(null!=width){
+          List<Product> filterProducts=dbProducts.stream().filter(dbProduct-> width.compareTo(dbProduct.getSizeW())>=0).collect(Collectors.toList());
+          filterProducts.forEach(filterProduct->{
+            if(!products.contains(filterProduct))
+              products.add(filterProduct);
+          });
+        }
+        if(null!=height){
+          List<Product> filterProducts=dbProducts.stream().filter(dbProduct-> height.compareTo(dbProduct.getSizeH())>=0).collect(Collectors.toList());
+          filterProducts.forEach(filterProduct->{
+            if(!products.contains(filterProduct))
+              products.add(filterProduct);
+          });
+        }
+      }
     }
     return products;
   }
+
 
 }
