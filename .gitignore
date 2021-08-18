@@ -35,4 +35,5 @@ hs_err_pid*
 /*.iml
 /.apt_generated/
 /.apt_generated_tests/
-*/target/**
+
+target/
