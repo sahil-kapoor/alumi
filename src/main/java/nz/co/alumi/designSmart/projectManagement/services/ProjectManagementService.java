@@ -11,12 +11,12 @@ public class ProjectManagementService {
   @Autowired
   private ProjectRepository projectRepository;
 
-  public Project create(Project projectRequest){
+  public Project create(Project projectRequest) {
     projectRequest.setVersion(1);
     return projectRepository.save(projectRequest);
   }
 
-  public Project getById(String  projectId){
+  public Project getById(String projectId) {
     return projectRepository.findById(projectId).get();
   }
 }

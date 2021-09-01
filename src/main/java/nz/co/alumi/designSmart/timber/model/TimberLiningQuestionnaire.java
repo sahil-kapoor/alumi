@@ -1,8 +1,10 @@
 package nz.co.alumi.designSmart.timber.model;
 
-import lombok.*;
-
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Builder
@@ -10,5 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class TimberLiningQuestionnaire {
-    private List<Question> questions;
+
+  private List<Question> questions;
 }

@@ -1,14 +1,18 @@
 package nz.co.alumi.designSmart.timber.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import nz.co.alumi.designSmart.timber.model.Question;
 import nz.co.alumi.designSmart.timber.model.QuestionOption;
 import nz.co.alumi.designSmart.timber.model.TimberLiningQuestionnaire;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/timber/questions")
@@ -21,23 +25,23 @@ public class QuestionController {
   }
 
   @PutMapping(value = "/{projectId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity saveQuestion(@PathVariable("projectId") String projectId){
+  public ResponseEntity saveQuestion(@PathVariable("projectId") String projectId) {
     return ResponseEntity.ok().build();
   }
 
   @PostMapping(value = "/{projectId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity updateQuestion(@PathVariable("projectId") String projectId){
+  public ResponseEntity updateQuestion(@PathVariable("projectId") String projectId) {
     return ResponseEntity.ok().build();
   }
 
   @GetMapping(value = "/{projectId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity getQuestion(@PathVariable("projectId") String projectId){
+  public ResponseEntity getQuestion(@PathVariable("projectId") String projectId) {
     return ResponseEntity.ok().build();
   }
 
 
   private TimberLiningQuestionnaire getTimberLiningQuestionnaire() {
-    List<Question> questions = new ArrayList<Question>(){{
+    List<Question> questions = new ArrayList<Question>() {{
       add(getQuestion1());
       add(getQuestion2());
       add(getQuestion3());
@@ -47,11 +51,14 @@ public class QuestionController {
     return TimberLiningQuestionnaire.builder().questions(questions).build();
   }
 
-  private Question getQuestion1(){
-    QuestionOption questionOption1= QuestionOption.builder().id(1).description("Bavel Back Brick").value("Bavel Back Brick").build();
-    QuestionOption questionOption2= QuestionOption.builder().id(2).description("Block").value("Block").build();
-    QuestionOption questionOption3= QuestionOption.builder().id(3).description("Shiplap").value("Shiplap").build();
-    List<QuestionOption> questionOptions=new ArrayList<QuestionOption>() {{
+  private Question getQuestion1() {
+    QuestionOption questionOption1 = QuestionOption.builder().id(1).description("Bavel Back Brick")
+        .value("Bavel Back Brick").build();
+    QuestionOption questionOption2 = QuestionOption.builder().id(2).description("Block")
+        .value("Block").build();
+    QuestionOption questionOption3 = QuestionOption.builder().id(3).description("Shiplap")
+        .value("Shiplap").build();
+    List<QuestionOption> questionOptions = new ArrayList<QuestionOption>() {{
       add(questionOption1);
       add(questionOption2);
       add(questionOption3);
@@ -64,10 +71,12 @@ public class QuestionController {
         .build();
   }
 
-  private Question getQuestion2(){
-    QuestionOption questionOption1= QuestionOption.builder().id(1).description("20mm").value("20mm").build();
-    QuestionOption questionOption2= QuestionOption.builder().id(2).description("50mm").value("50mm").build();
-    List<QuestionOption> questionOptions=new ArrayList<QuestionOption>() {{
+  private Question getQuestion2() {
+    QuestionOption questionOption1 = QuestionOption.builder().id(1).description("20mm")
+        .value("20mm").build();
+    QuestionOption questionOption2 = QuestionOption.builder().id(2).description("50mm")
+        .value("50mm").build();
+    List<QuestionOption> questionOptions = new ArrayList<QuestionOption>() {{
       add(questionOption1);
       add(questionOption2);
     }};
@@ -79,11 +88,14 @@ public class QuestionController {
         .build();
   }
 
-  private Question getQuestion3(){
-    QuestionOption questionOption1= QuestionOption.builder().id(1).description("90mm").value("90mm").build();
-    QuestionOption questionOption2= QuestionOption.builder().id(2).description("140mm").value("140mm").build();
-    QuestionOption questionOption3= QuestionOption.builder().id(3).description("180mm").value("180mm").build();
-    List<QuestionOption> questionOptions=new ArrayList<QuestionOption>() {{
+  private Question getQuestion3() {
+    QuestionOption questionOption1 = QuestionOption.builder().id(1).description("90mm")
+        .value("90mm").build();
+    QuestionOption questionOption2 = QuestionOption.builder().id(2).description("140mm")
+        .value("140mm").build();
+    QuestionOption questionOption3 = QuestionOption.builder().id(3).description("180mm")
+        .value("180mm").build();
+    List<QuestionOption> questionOptions = new ArrayList<QuestionOption>() {{
       add(questionOption1);
       add(questionOption2);
       add(questionOption3);
@@ -96,10 +108,12 @@ public class QuestionController {
         .build();
   }
 
-  private Question getQuestion4(){
-    QuestionOption questionOption1= QuestionOption.builder().id(1).description("Yes").value("Yes").build();
-    QuestionOption questionOption2= QuestionOption.builder().id(2).description("No").value("No").build();
-    List<QuestionOption> questionOptions=new ArrayList<QuestionOption>() {{
+  private Question getQuestion4() {
+    QuestionOption questionOption1 = QuestionOption.builder().id(1).description("Yes").value("Yes")
+        .build();
+    QuestionOption questionOption2 = QuestionOption.builder().id(2).description("No").value("No")
+        .build();
+    List<QuestionOption> questionOptions = new ArrayList<QuestionOption>() {{
       add(questionOption1);
       add(questionOption2);
     }};
@@ -111,10 +125,12 @@ public class QuestionController {
         .build();
   }
 
-  private Question getQuestion5(){
-    QuestionOption questionOption1= QuestionOption.builder().id(1).description("Grooved").value("Grooved").build();
-    QuestionOption questionOption2= QuestionOption.builder().id(2).description("Architrave").value("Architrave").build();
-    List<QuestionOption> questionOptions=new ArrayList<QuestionOption>() {{
+  private Question getQuestion5() {
+    QuestionOption questionOption1 = QuestionOption.builder().id(1).description("Grooved")
+        .value("Grooved").build();
+    QuestionOption questionOption2 = QuestionOption.builder().id(2).description("Architrave")
+        .value("Architrave").build();
+    List<QuestionOption> questionOptions = new ArrayList<QuestionOption>() {{
       add(questionOption1);
       add(questionOption2);
     }};

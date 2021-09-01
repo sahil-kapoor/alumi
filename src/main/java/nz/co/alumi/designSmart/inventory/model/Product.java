@@ -38,20 +38,24 @@ public class Product {
 
   @Override
   public int hashCode() {
-    return sizeH+sizeW+qty;
+    return sizeH + sizeW + qty;
   }
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj)
+    if (this == obj) {
       return true;
-    if (obj == null)
+    }
+    if (obj == null) {
       return false;
-    if (getClass() != obj.getClass())
+    }
+    if (getClass() != obj.getClass()) {
       return false;
+    }
     Product other = (Product) obj;
-    if (sku != other.sku)
+    if (sku != other.sku) {
       return false;
+    }
     return true;
   }
 
