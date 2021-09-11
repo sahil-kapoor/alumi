@@ -5,9 +5,15 @@ import com.odoojava.api.FilterCollection.FilterOperator;
 import com.odoojava.api.ObjectAdapter;
 import com.odoojava.api.RowCollection;
 import com.odoojava.api.Session;
+import java.sql.SQLOutput;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.logging.SocketHandler;
 import nz.co.alumi.designSmart.odoo.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 @Service
 public class ReportHelper {
@@ -18,7 +24,26 @@ public class ReportHelper {
   public void testStockReport(){
 
     try{
+/*
+
+      models.execute_kw(db, uid, password,
+          'report.stock.quantity', 'read_group',
+          [[['product_id', '=', 1586]]],
+      {'fields': ['id','date','product_id','product_qty','warehouse_id'],"groupby": [
+        "date:day",
+            "product_id"
+            ]})
+*/
+
+      List domain=Arrays.asList(Arrays.asList("product_id", "=", 1586));
+      List groupBy=Arrays.asList("date:day","product_id");
+      List fields=Arrays.asList("id","date","product_id","product_qty","warehouse_id");
       Session odooSession=sessionService.getOdooSession();
+
+
+      List obj=Arrays.asList((Object[])odooSession.executeCommand("report.stock.quantity", "read_group", new Object[]{domain,fields,groupBy}));
+
+      System.out.println(CollectionUtils.isEmpty(obj));
 
       ObjectAdapter reportStockObjAdp = odooSession.getObjectAdapter("report.stock.quantity");
       FilterCollection filters = new FilterCollection();
