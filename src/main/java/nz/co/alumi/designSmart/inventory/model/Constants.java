@@ -13,5 +13,5 @@ public class Constants {
 
   ;
 
-  public enum ProductType {WINDOW, HINGE_DOOR, SLIDING_DOOR, ENTRANCE_DOOR}
+  public enum ProductType {WINDOW, HINGE_DOOR, SLIDING_DOOR, ENTRANCE_DOOR, SASHES}
 }

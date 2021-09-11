@@ -46,6 +46,12 @@ public class ProductHelper {
         compareIntegers.apply(height, product.getSizeH()));
   }
 
+  public boolean partialMatchWithWidthHeightColor(Integer width, Integer height, String color, Product product) {
+    return (compareIntegers.apply(width, product.getSizeW()) &&
+        compareIntegers.apply(height, product.getSizeH()) &&
+        compareStrings.apply(color,product.getColorKey()));
+  }
+
   public boolean partialMatchWithWidthColor(Integer width, String color, Product product) {
     return (compareIntegers.apply(width, product.getSizeW()) &&
         compareStrings.apply(color, product.getColorKey()));

@@ -4,6 +4,9 @@ import com.odoojava.api.OdooApiException;
 import com.odoojava.api.OdooXmlRpcProxy;
 import com.odoojava.api.RowCollection;
 import com.odoojava.api.Session;
+import nz.co.alumi.designSmart.odoo.service.report.ReportHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,11 +17,13 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @ComponentScan(basePackages = {"nz.co.alumi.*"})
 @EnableMongoRepositories
 @EnableMongoAuditing
-public class AlumiApplication {
+public class AlumiApplication implements CommandLineRunner {
 
+  @Autowired
+  private ReportHelper  reportHelper;
   public static void main(String[] args) {
     SpringApplication.run(AlumiApplication.class, args);
-    test();
+    //test();
   }
 
   public static void test() {
@@ -34,14 +39,17 @@ public class AlumiApplication {
       RowCollection partners = partnerAd
           .searchAndReadObject(filters, new String[]{"id", "name", "email"});
       System.out.println(partners.get(0).getID() + "--" + partners.get(0).get("name"));
-
     } catch (OdooApiException ex) {
       ex.printStackTrace();
     } catch (Exception ex) {
       ex.printStackTrace();
     }
-
     System.out.println(odooSession.getContext());
   }
 
+  @Override
+  public void run(String... args) throws Exception {
+
+    reportHelper.testStockReport();
+  }
 }
